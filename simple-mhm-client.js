@@ -6,15 +6,14 @@ const secrets = require('./secrets');
 
 console.log(`Setting up API client @ ${secrets.everactive_baseurl}`);
 
-axios.defaults.baseURL = secrets.everactive_baseurl;
-
 // oauth helper method to retrieve client_credentials grant_type
 // access_token.
 const getClientCredentials = oauth.client(axios.create(), {
-  url: `/auth/token`,
+  url: secrets.everactive_authurl,
   grant_type: 'client_credentials',
   client_id: secrets.everactive_client_id,
-  client_secret: secrets.everactive_client_secret
+  client_secret: secrets.everactive_client_secret,
+  audience: secrets.everactive_audience,
 });
 
 (async function main() {
