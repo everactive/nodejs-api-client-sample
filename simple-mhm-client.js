@@ -9,11 +9,10 @@ console.log(`Setting up API client @ ${secrets.everactive_baseurl}`);
 // oauth helper method to retrieve client_credentials grant_type
 // access_token.
 const getClientCredentials = oauth.client(axios.create(), {
-  url: secrets.everactive_authurl,
+  url: `${secrets.everactive_baseurl}/auth/token`,
   grant_type: 'client_credentials',
   client_id: secrets.everactive_client_id,
   client_secret: secrets.everactive_client_secret,
-  audience: secrets.everactive_audience,
 });
 
 (async function main() {
@@ -35,7 +34,7 @@ const getClientCredentials = oauth.client(axios.create(), {
   // Contact the API Endpoints as specified in https://api-spec.data.everactive.com/
 
   console.log("Get a list of machines from /machines");
-  const machineListResponse = await apiClient.get('/machines');
+  const machineListResponse = await apiClient.get('/v2020-07/machines');
   console.log(`${machineListResponse.status} - ${machineListResponse.statusText}`);
   if (machineListResponse.status != 200) {
     console.error("Request Failed");
@@ -58,7 +57,7 @@ const getClientCredentials = oauth.client(axios.create(), {
       // Retrieve up to 8 hours of data prior to the last reading timestamp
       const startUnixTimestap = lastReadingUnixTimestamp - (8 * 60 * 60);
       const machineId = firstMachine.id
-      const timeseriesResponse = await apiClient.get(`/machines/${machineId}/timeseries?startTime=${startUnixTimestap}&endTime=${lastReadingUnixTimestamp}`);
+      const timeseriesResponse = await apiClient.get(`/v2020-07/machines/${machineId}/timeseries?startTime=${startUnixTimestap}&endTime=${lastReadingUnixTimestamp}`);
       console.log(`${timeseriesResponse.status} - ${timeseriesResponse.statusText}`);
       if (timeseriesResponse.status != 200) {
         console.error("Request Failed");
