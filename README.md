@@ -8,9 +8,7 @@ in order to run this example you need to create a `secrets.js` file with your AP
 
 ```
 module.exports = {
-  "everactive_audience": "https://everactive/audience",
-  "everactive_authurl": "https://auth.insights.everactive.com/oauth/token",
-  "everactive_baseurl": "https://api.data.everactive.com/v2020-07",
+  "everactive_baseurl": "https://api.data.everactive.com",
   "everactive_client_id": "********************",
   "everactive_client_secret": "********************"
 }
