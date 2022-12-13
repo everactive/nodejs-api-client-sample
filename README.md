@@ -1,6 +1,8 @@
 # nodejs-api-client-sample
 
-Sample nodejs application that interacts with the Everactive API.
+Sample nodejs application that interacts with the Everactive APIs. 
+
+In this repo you'll find examples to work with the [Edge Platform API](https://docs.api.everactive.com) and with the [MVM API](https://api-spec.data.everactive.com/everactive-api.html#tag/Machine).
 
 ## Configuration
 
@@ -24,10 +26,17 @@ This application is based on the Axios Http client (https://www.npmjs.com/packag
 npm install
 ```
 
-To execute the MHM example
+To execute the Edge Platform API example
 
 ```
-npm run mhm-client
+npm run api-client
+```
+
+
+To execute the MVM example
+
+```
+npm run mvm-client
 ```
 
 ## Runing with Docker
@@ -40,8 +49,20 @@ Build the image:
 docker build -t everactive-api .
 ```
 
-Run the application:
+Run the application.
 
+Edge Platform Example:
 ```
-docker run -ti --rm everactive-api npm run mhm-client
+docker run -ti --rm everactive-api npm run api-client
 ```
+
+
+MVM Example:
+```
+docker run -ti --rm everactive-api npm run mvm-client
+```
+
+## Documentation
+
+* Platform API https://docs.api.everactive.com
+* MVM API https://api-spec.data.everactive.com/everactive-api.html#tag/Machine
